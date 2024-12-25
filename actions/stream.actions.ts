@@ -1,5 +1,5 @@
 'use server';
-
+//It generates a secure token that allows the logged-in user to access Stream API services 
 import { currentUser } from '@clerk/nextjs/server';
 import { StreamClient } from '@stream-io/node-sdk';
 

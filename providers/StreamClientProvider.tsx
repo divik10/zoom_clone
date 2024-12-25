@@ -2,7 +2,7 @@
 
 import { ReactNode, useEffect, useState } from 'react';
 import { StreamVideoClient, StreamVideo } from '@stream-io/video-react-sdk';
-import { useUser } from '@clerk/nextjs';
+import { useUser } from '@clerk/nextjs'; //We get it from clerk
 
 import { tokenProvider } from '@/actions/stream.actions';
 import Loader from '@/components/Loader';
@@ -11,7 +11,7 @@ const API_KEY = process.env.NEXT_PUBLIC_STREAM_API_KEY;
 
 const StreamVideoProvider = ({ children }: { children: ReactNode }) => {
   const [videoClient, setVideoClient] = useState<StreamVideoClient>();
-  const { user, isLoaded } = useUser();
+  const { user, isLoaded } = useUser();// getting info about user
 
   useEffect(() => {
     if (!isLoaded || !user) return;
@@ -27,7 +27,7 @@ const StreamVideoProvider = ({ children }: { children: ReactNode }) => {
       tokenProvider,
     });
 
-    setVideoClient(client);
+    setVideoClient(client);// Saves the video client in the videoClient state so the app can use it later.
   }, [user, isLoaded]);
 
   if (!videoClient) return <Loader />;
